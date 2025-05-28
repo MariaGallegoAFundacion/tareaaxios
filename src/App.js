@@ -12,14 +12,12 @@ export default function App() {
     });
   }, []);
 
-  function updatePost() {
+  function deletePost() {
     axios
-      .put(`${baseURL}/1`, {
-        title: "Hello World!",
-        body: "This is an updated post."
-      })
-      .then((response) => {
-        setPost(response.data);
+      .delete(`${baseURL}/1`)
+      .then(() => {
+        alert("Post deleted!");
+        setPost(null)
       });
   }
 
@@ -29,7 +27,7 @@ export default function App() {
     <div>
       <h1>{post.title}</h1>
       <p>{post.body}</p>
-      <button onClick={updatePost}>Update Post</button>
+      <button onClick={deletePost}>Delete Post</button>
     </div>
   );
 }
